@@ -2,18 +2,18 @@
 
 import 'package:dio/dio.dart';
 
-class FrasesRepository {
+class FrasesBuild {
   final dio = Dio();
   final String url = 'https://api.quotable.io/random';
 
-  Future<Map<dynamic, dynamic>?> fetch() async {
+  Future<Map<String, String>?> fetch() async {
     try {
       final response = await dio.get(url);
 
       if (response.statusCode == 200) {
         final data = response.data;
-        final frase = data.quote;
-        final autor = data.author;
+        final frase = data['quote'];
+        final autor = data['author'];
         print(frase);
         print(autor);
 
